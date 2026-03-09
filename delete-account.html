@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delete Account / حذف الحساب – DYARNA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #3D5A35;
+      --green-light: #4E7244;
+      --green-pale: #EEF3EC;
+      --green-border: rgba(61,90,53,0.18);
+      --dark: #1E2E1A;
+      --muted: #6B7F67;
+      --bg: #F7F9F6;
+    }
+
+    body {
+      font-family: 'Inter', 'Tajawal', sans-serif;
+      background-color: var(--bg);
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 1.4rem 2.5rem;
+      border-bottom: 1px solid var(--green-border);
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-area { display: flex; align-items: center; gap: 0.7rem; }
+    .logo-svg  { width: 38px; height: 38px; }
+    .brand-wrap { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-en  { font-family: 'Inter', sans-serif; font-size: 0.92rem; font-weight: 700; letter-spacing: 0.1em; color: var(--green); }
+    .brand-ar  { font-family: 'Tajawal', sans-serif; font-size: 0.8rem; font-weight: 500; color: var(--muted); }
+
+    /* language toggle */
+    .lang-toggle {
+      display: flex;
+      border: 1.5px solid var(--green-border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .lang-btn {
+      padding: 0.4rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      transition: background 0.2s, color 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .lang-btn.active { background: var(--green); color: white; }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      max-width: 520px;
+      width: 100%;
+      box-shadow: 0 4px 32px rgba(61,90,53,0.08);
+      border: 1px solid var(--green-border);
+      animation: rise 0.45s ease both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .icon-wrap {
+      width: 58px; height: 58px;
+      background: var(--green-pale);
+      border: 1.5px solid var(--green-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* bilingual content blocks */
+    .ar { font-family: 'Tajawal', sans-serif; }
+    .en { font-family: 'Inter', sans-serif; }
+
+    [data-lang] { display: none; }
+    body.show-ar [data-lang="ar"] { display: block; }
+    body.show-en [data-lang="en"] { display: block; }
+    body.show-ar { direction: rtl; }
+    body.show-en { direction: ltr; }
+
+    h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .subtitle { color: var(--muted); font-size: 0.96rem; line-height: 1.75; margin-bottom: 2rem; }
+    .divider { height: 1px; background: var(--green-border); margin: 1.75rem 0; }
+
+    .steps-title {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--green); margin-bottom: 1rem;
+    }
+
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
+    .steps li { display: flex; align-items: flex-start; gap: 0.8rem; font-size: 0.95rem; line-height: 1.65; }
+
+    .step-num {
+      min-width: 26px; height: 26px;
+      background: var(--green); color: white;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 700; margin-top: 2px; flex-shrink: 0;
+    }
+
+    .cta {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--green); color: white;
+      padding: 0.95rem 1.8rem; border-radius: 12px;
+      font-size: 0.97rem; font-weight: 600;
+      text-decoration: none; transition: background 0.2s, transform 0.15s;
+      width: 100%; justify-content: center;
+    }
+    .cta:hover { background: var(--green-light); transform: translateY(-1px); }
+
+    .note {
+      margin-top: 1.25rem; background: var(--green-pale);
+      padding: 0.9rem 1rem; border-radius: 8px;
+      font-size: 0.875rem; color: var(--muted); line-height: 1.7;
+    }
+    body.show-ar .note { border-right: 3px solid var(--green); }
+    body.show-en .note { border-left: 3px solid var(--green); }
+
+    footer {
+      text-align: center; padding: 1.5rem;
+      font-size: 0.8rem; color: var(--muted);
+      border-top: 1px solid var(--green-border); background: white;
+      font-family: 'Inter', sans-serif;
+    }
+
+    @media (max-width: 480px) {
+      .card { padding: 2rem 1.5rem; }
+      h1 { font-size: 1.35rem; }
+      header { padding: 1.25rem 1.25rem; }
+    }
+  </style>
+</head>
+<body class="show-ar">
+
+<header>
+  <div class="logo-area">
+    <svg class="logo-svg" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="5,48 50,8 95,48" stroke="#3D5A35" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="12" y="46" width="76" height="52" rx="2" stroke="#3D5A35" stroke-width="9" fill="none"/>
+      <polyline points="22,60 50,32 78,60" stroke="#3D5A35" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="28" y="58" width="44" height="34" rx="2" stroke="#3D5A35" stroke-width="7" fill="none"/>
+    </svg>
+    <div class="brand-wrap">
+      <span class="brand-en">DYARNA</span>
+      <span class="brand-ar">ديارنا</span>
+    </div>
+  </div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('ar')">عربي</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="icon-wrap">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3D5A35" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="3 6 5 6 21 6"/>
+        <path d="M19 6l-1 14H6L5 6"/>
+        <path d="M10 11v6M14 11v6"/>
+        <path d="M9 6V4h6v2"/>
+      </svg>
+    </div>
+
+    <!-- ARABIC -->
+    <div data-lang="ar" class="ar">
+      <h1>طلب حذف الحساب</h1>
+      <p class="subtitle">نأسف لرؤيتك تغادر. يمكنك طلب حذف حسابك وجميع بياناتك من تطبيق ديارنا عبر البريد الإلكتروني.</p>
+      <div class="divider"></div>
+      <p class="steps-title">خطوات طلب الحذف</p>
+      <ul class="steps">
+        <li><span class="step-num">١</span><span>أرسل بريداً إلكترونياً إلى عنوان الدعم أدناه من البريد المسجل في حسابك.</span></li>
+        <li><span class="step-num">٢</span><span>اكتب في الموضوع: <strong>طلب حذف حساب</strong></span></li>
+        <li><span class="step-num">٣</span><span>سيتم معالجة طلبك وحذف حسابك وبياناتك خلال <strong>30 يوماً</strong> من تاريخ الطلب.</span></li>
+      </ul>
+      <a class="cta ar" href="mailto:Support@dyarna.co?subject=طلب حذف حساب">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        مراسلتنا على Support@dyarna.co
+      </a>
+      <div class="note">⚠️ بعد تنفيذ الحذف، لن يمكن استرجاع حسابك أو أي بيانات مرتبطة به. إذا كنت تواجه مشكلة يمكننا مساعدتك في حلها، نرحب بتواصلك معنا.</div>
+    </div>
+
+    <!-- ENGLISH -->
+    <div data-lang="en" class="en">
+      <h1>Delete Account Request</h1>
+      <p class="subtitle">We're sorry to see you go. You can request the deletion of your account and all associated data from the Dyarna app by sending us an email.</p>
+      <div class="divider"></div>
+      <p class="steps-title">How to request deletion</p>
+      <ul class="steps">
+        <li><span class="step-num">1</span><span>Send an email from the address registered to your account to the support email below.</span></li>
+        <li><span class="step-num">2</span><span>Use the subject line: <strong>Account Deletion Request</strong></span></li>
+        <li><span class="step-num">3</span><span>Your request will be processed and your account and data will be permanently deleted within <strong>30 days</strong>.</span></li>
+      </ul>
+      <a class="cta en" href="mailto:Support@dyarna.co?subject=Account Deletion Request">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        Contact us at Support@dyarna.co
+      </a>
+      <div class="note">⚠️ Once deleted, your account and all associated data cannot be recovered. If you're experiencing an issue we can help with, we'd love to hear from you first.</div>
+    </div>
+
+  </div>
+</main>
+
+<footer>© 2024 DYARNA · ديارنا · All rights reserved</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.className = 'show-' + lang;
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    document.documentElement.lang = lang;
+  }
+</script>
+
+</body>
+</html>
